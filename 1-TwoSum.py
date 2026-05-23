@@ -30,3 +30,21 @@ Space complexity (optimal): O(n)
 Interview context:
 Commonly asked at Amazon, Google, Microsoft, and Facebook.
 """
+
+# 1. Brute force with two nested loops (O(n²))
+def brute_force_two_sum(nums, target):
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if j==i:
+                continue
+            else:
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+    return None
+
+
+# test brute_force_two_sum
+print(brute_force_two_sum([2, 7, 11, 15], 9))
+print(brute_force_two_sum([2, 7, 11, 15], 13))
+print(brute_force_two_sum([2, 7, 11, 15], 20))
+print(brute_force_two_sum([2, 7, 11, 15], 17))
