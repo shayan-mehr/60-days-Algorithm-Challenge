@@ -44,7 +44,26 @@ def brute_force_two_sum(nums, target):
 
 
 # test brute_force_two_sum
-print(brute_force_two_sum([2, 7, 11, 15], 9))
-print(brute_force_two_sum([2, 7, 11, 15], 13))
-print(brute_force_two_sum([2, 7, 11, 15], 20))
-print(brute_force_two_sum([2, 7, 11, 15], 17))
+# print(brute_force_two_sum([2, 7, 11, 15], 9))
+# print(brute_force_two_sum([2, 7, 11, 15], 13))
+# print(brute_force_two_sum([2, 7, 11, 15], 20))
+# print(brute_force_two_sum([2, 7, 11, 15], 17))
+
+
+# 2. Optimized using HashMap (O(n))
+
+def two_sum_hash(nums, target):
+    hashmap = {}
+    for i in range(len(nums)):
+        diff = target - nums[i]
+        if diff in hashmap:
+            return [i, hashmap[diff]]
+        hashmap[nums[i]] = i
+    return None
+
+# test two_sum_hash
+print(two_sum_hash([2, 15, 11, 7], 13))
+print(two_sum_hash([15, 1, 3, 8], 9))
+print(two_sum_hash([1, 4, 2, 3], 8))
+print(two_sum_hash([1, 4, 2, 3], 6))
+
