@@ -43,3 +43,21 @@ Interview context:
 Commonly asked at Amazon, Microsoft, and Facebook interviews.
 """
 
+
+# 1. Filter + reverse (O(n) time, O(n) space)
+def filter_non_alphanum(s: str) -> str:
+    non_alphanum = {',', ' ', ':'}
+    s = ''.join(filter(lambda x: x not in non_alphanum, s))
+    return s
+
+def isPalindrome(s: str) -> bool:
+    s = s.lower() # non sensetive for uppercase and lowercase
+    s = filter_non_alphanum(s)
+    return s == s[-1::-1]
+
+# test
+print(isPalindrome("A man, a plan, a canal: Panama"))
+print(isPalindrome("race a car"))
+print(isPalindrome(" "))
+print(isPalindrome("pOP"))
+
