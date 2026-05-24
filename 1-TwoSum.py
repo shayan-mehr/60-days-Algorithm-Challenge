@@ -62,8 +62,25 @@ def two_sum_hash(nums, target):
     return None
 
 # test two_sum_hash
-print(two_sum_hash([2, 15, 11, 7], 13))
-print(two_sum_hash([15, 1, 3, 8], 9))
-print(two_sum_hash([1, 4, 2, 3], 8))
-print(two_sum_hash([1, 4, 2, 3], 6))
+# print(two_sum_hash([2, 15, 11, 7], 13))
+# print(two_sum_hash([15, 1, 3, 8], 9))
+# print(two_sum_hash([1, 4, 2, 3], 8))
+# print(two_sum_hash([1, 4, 2, 3], 6))
 
+
+# 3. (Optional) Two pointers if array was sorted
+def two_pointers(nums, target):
+    i, j = 0, len(nums) - 1
+    while i <= j:
+        if nums[i] + nums[j] == target:
+            return [i, j]
+        elif nums[i] + nums[j] < target:
+            i += 1
+        elif nums[i] + nums[j] > target:
+            j -= 1
+    return None
+
+print(two_pointers([1, 2, 3, 4], 6))
+print(two_pointers([5, 7, 10, 15], 12))
+print(two_pointers([5, 10, 15, 20], 16))
+print(two_pointers([-1, 0, 2, 10], 2))
