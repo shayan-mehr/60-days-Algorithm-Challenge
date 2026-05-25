@@ -39,3 +39,21 @@ Interview context:
 Commonly asked at Amazon, Google, Microsoft, Bloomberg.
 """
 
+def test_and_log(func, args: list):
+    for arg in args:
+        print(f"input : {arg} | output : {func(arg)}")
+
+
+def max_profit_brute_forec(prices: list):
+    mx = 0
+    for i in range(len(prices)):
+        for j in range(i + 1, len(prices)):
+            profit = prices[j] - prices[i]
+            if profit > mx:
+                mx = profit
+    return mx
+
+# test max_profit_brute_force
+test_and_log(max_profit_brute_forec, [[7,6,4,3,1], [7,1,5,3,6,4]])
+# input : [7, 6, 4, 3, 1] | output : 0
+# input : [7, 1, 5, 3, 6, 4] | output : 5
