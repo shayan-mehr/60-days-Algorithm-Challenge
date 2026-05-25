@@ -44,6 +44,7 @@ Commonly asked at Amazon, Microsoft, and Facebook interviews.
 """
 
 
+
 # 1. Filter + reverse (O(n) time, O(n) space)
 def filter_non_alphanum(s: str) -> str:
     non_alphanum = {',', ' ', ':'}
@@ -56,8 +57,37 @@ def isPalindrome(s: str) -> bool:
     return s == s[-1::-1]
 
 # test
-print(isPalindrome("A man, a plan, a canal: Panama"))
-print(isPalindrome("race a car"))
-print(isPalindrome(" "))
-print(isPalindrome("pOP"))
+# print(isPalindrome("A man, a plan, a canal: Panama"))
+# print(isPalindrome("race a car"))
+# print(isPalindrome(" "))
+# print(isPalindrome("pOP"))
+
+
+
+# 2. Two pointers (O(n) time, O(1) space) - OPTIMAL
+#p o p
+#0 1 2 -> i = 0, j = 2
+
+def is_palindrome_two_pointers(s: str) -> bool:
+    left, right = 0, len(s) - 1
+
+    while left < right:
+        if s[left].isalnum() and s[right].isalnum():
+            if s[left].lower() != s[right].lower():
+                return False
+            else:
+                left += 1
+                right -= 1
+        if not s[left].isalnum():
+            left += 1
+        if not s[right].isalnum():
+            right -= 1
+    return True
+
+def test_ispalindrome2(strings: list) -> bool:
+    for s in strings:
+        print(f'input: {s} | output: {is_palindrome_two_pointers(s)}')
+
+strs = ["A man, a plan, a canal: panama", "race a car", "0P", "a.", "ab,a", "a,,b"]
+test_ispalindrome2(strs)
 
