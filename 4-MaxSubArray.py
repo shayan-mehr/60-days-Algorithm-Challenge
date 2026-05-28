@@ -53,3 +53,15 @@ Interview context:
 Frequently asked at Amazon, Google, Microsoft, Apple, and Facebook.
 """
 
+
+
+def find_max_subarray_brute_force(nums: list[int]) -> int:
+    max_sum = sum(nums)
+    for i in range(len(nums)):
+        for j in range(i, len(nums)):
+            s = sum(nums[i:j])
+            if s > max_sum:
+                max_sum = s
+    return max_sum
+
+print(find_max_subarray_brute_force([1, 2, -3, -4, -4]))
