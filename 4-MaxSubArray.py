@@ -28,8 +28,7 @@ Constraints:
 
 Follow-up challenges:
 1. Brute force — check all subarrays (O(n^2) or O(n^3))
-2. Divide and Conquer (O(n log n))
-3. Kadane's Algorithm — single pass (O(n) time, O(1) space) - OPTIMAL
+2. Kadane's Algorithm — single pass (O(n) time, O(1) space) - OPTIMAL
 
 Time complexity (optimal): O(n)
 Space complexity (optimal): O(1)
@@ -64,4 +63,33 @@ def find_max_subarray_brute_force(nums: list[int]) -> int:
                 max_sum = s
     return max_sum
 
+# test brute_force
 print(find_max_subarray_brute_force([1, 2, -3, -4, -4]))
+
+
+def find_max_subarray_single_pass(nums: list[int]) -> int:
+    max_sum = nums[0]
+    temp_sum = nums[0]
+
+    # select between nums[i] or max_sum
+    for i in range(1, len(nums)):
+        if temp_sum + nums[i] < nums[i]:
+            temp_sum = nums[i]
+        else:
+            temp_sum += nums[i]
+
+        if max_sum < temp_sum:
+            max_sum = temp_sum
+
+    return max_sum
+
+
+print(find_max_subarray_single_pass([1, 2, 3, -4, 5, -4]))
+
+
+
+
+
+
+
+
