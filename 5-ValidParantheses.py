@@ -110,20 +110,45 @@ class Stack:
 
 
 # test Stack
-a = [1, 2, 3, 4]
+# a = [1, 2, 3, 4]
+#
+# astack = Stack()
+#
+# for i in a:
+#     astack.push(i)
+#
+# print(astack.pop()) # 4
+# print(astack.top()) # 2
+# print(astack.pop()) # 3
+# print(astack.top()) # 1
+# print(astack.is_empty()) # False
+# print(astack.pop()) # 2
+# print(astack.pop()) # 1
+# print(astack.is_empty()) # True
+# print(astack.top()) # -1
+# print(astack.pop()) # IndexError
 
-astack = Stack()
 
-for i in a:
-    astack.push(i)
 
-print(astack.pop()) # 4
-print(astack.top()) # 2
-print(astack.pop()) # 3
-print(astack.top()) # 1
-print(astack.is_empty()) # False
-print(astack.pop()) # 2
-print(astack.pop()) # 1
-print(astack.is_empty()) # True
-print(astack.top()) # -1
-print(astack.pop()) # IndexError
+
+def is_paranthes_valid(s):
+    parentheses = {")": "(", "]": "[", "}": "{"}
+    parens = Stack()
+    for char in s:
+        if char in parentheses.values():
+            parens.push(char)
+        if char in parentheses.keys():
+            if parentheses[char] == parens.peek():
+                parens.pop()
+            else:
+                return False
+
+    return True if parens.is_empty() else False
+
+# test is_parenthes_valid
+print(is_paranthes_valid("(1 + 4) in {2, 5, 3}"))
+print(is_paranthes_valid("[(4 - 3) * (2 * 3)] - 4 = 2"))
+print(is_paranthes_valid("{1 [4}]"))
+print(is_paranthes_valid("{tes[t]}"))
+print(is_paranthes_valid("({t)est}"))
+print(is_paranthes_valid("I(wrote[this{text}to]test)function."))
