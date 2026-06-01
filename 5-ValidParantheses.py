@@ -79,3 +79,51 @@ Common variations:
 - Minimum add to make parentheses valid
 - Longest valid parentheses (harder)
 """
+
+
+class Stack:
+    def __init__(self):
+        self.__stack = []
+        self.__top = -1
+
+    def is_empty(self):
+        return self.__top == -1
+
+    def top(self):
+        return self.__top
+
+    def push(self, value):
+        self.__stack.append(value)
+        self.__top += 1
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Stack is empty")
+        return self.__stack[self.__top]
+
+    def pop(self):
+        if self.is_empty():
+            raise IndexError('pop from empty stack is not possible')
+        temp = self.__stack.pop(self.__top)
+        self.__top -= 1
+        return temp
+
+
+# test Stack
+a = [1, 2, 3, 4]
+
+astack = Stack()
+
+for i in a:
+    astack.push(i)
+
+print(astack.pop()) # 4
+print(astack.top()) # 2
+print(astack.pop()) # 3
+print(astack.top()) # 1
+print(astack.is_empty()) # False
+print(astack.pop()) # 2
+print(astack.pop()) # 1
+print(astack.is_empty()) # True
+print(astack.top()) # -1
+print(astack.pop()) # IndexError
