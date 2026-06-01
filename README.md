@@ -18,13 +18,13 @@ Two main goals drive this journey:
 
 ## Progress
 
-| Day | Problem | Topic | Status      |
-|-----|---------|-------|-------------|
-| 1 | Two Sum | Hash Map | done        |
-| 2 | Valid Parentheses | Stack | done        |
-| 3 | Merge Sorted Array | Two Pointers | done        |
-| 4 | Maximum Subarray | Kadane's Algorithm / DP | in progress |
-| 5 | ... | ... |             |
+| Day | Problem            | Topic                   | Status      |
+|-----|--------------------|-------------------------|-------------|
+| 1 | Two Sum            | Hash Map                | done        |
+| 2 | Valid Parentheses  | Stack                   | done        |
+| 3 | Merge Sorted Array | Two Pointers            | done        |
+| 4 | Maximum Subarray   | Kadane's Algorithm / DP | done        |
+| 5 | Valid Parantheses  | Stack                   | in progress |
 
 ## How This Repository Is Organized
 
@@ -33,6 +33,7 @@ Algorithm/
 ├── 2-ValidParentheses.py
 ├── 3-MergeSortedArray.py
 ├── 4-MaxSubArray.py
+├── 5-ValidParantheses.py
 ├── ...
 └── README.md
 
