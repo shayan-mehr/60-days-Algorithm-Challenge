@@ -97,3 +97,90 @@ Variations to explore after solving:
     - Palindrome Linked List (uses fast/slow + reverse)
 """
 
+
+class Node:
+    def __init__(self, value):
+        self.data = value
+        self.next = None
+
+
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+
+
+    def display(self):
+        current = self.head
+        while current:
+            print(current.data, end="->")
+            current = current.next
+        print("None")
+
+
+    def insert_at_beggining(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+
+ll = LinkedList()
+ll.insert_at_beggining(1)
+ll.insert_at_beggining(2)
+ll.insert_at_beggining(3)
+ll.insert_at_beggining(4)
+ll.display()
+
+
+def reverseList(linked_list: LinkedList) -> LinkedList:
+    current = linked_list.head
+    prev = None
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
+    linked_list.head = prev
+
+
+
+# how it works?
+# prev = None
+# current = Node(4, Node(3, Node(2, Node(1, None))))
+# ------------------------------------------------------
+# while 1:
+# next_node = current.next = Node(3, Node(2, Node(1, None)))
+# current.next = prev = None -> current = Node(4, None)
+# prev = current = Node(4, None)
+# current = next_node = Node(3, Node(2, Node(1, None)))
+# -------------------------------------------------
+# while 2:
+# next_node = current.next = Node(2, Node(1, None))
+# current.next = Node(4, None) =  None -> current = Node(3, Node(4, None))
+# prev = current = Node(3, Node(4, None))
+# current = next_node = Node(2, Node(1, None))
+# --------------------------------------
+# while 3:
+# next_node = current.next = Node(1, None)
+# current.next = prev = Node(3, Node(4, None)) -> current = Node(2, Node(3, Node(4, None)))
+# prev = current = Node(2, Node(3, Node(4, None)))
+# current = next_node = Node(1, None)
+# ------------------------------------------
+# while 4:
+# next_node = current.next = None
+# current.next = prev = Node(2, Node(3, Node(4, None))) -> current = Node(1, Node(2, Node(3, Node(4, None))))
+# prev = current = Node(1, Node(2, Node(3, Node(4, None))))
+# current = next_node = None
+# ------------------------------------------
+
+
+
+
+print("-" * 50)
+print("Before reverse")
+ll.display()
+print("After reverse")
+reverseList(ll)
+ll.display()
