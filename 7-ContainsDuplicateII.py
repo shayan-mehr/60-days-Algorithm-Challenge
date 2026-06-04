@@ -102,10 +102,15 @@ Common variations:
     - Find all pairs within distance k
 """
 
+
+# nums = [7, 6, 8, 8, 1, 3, 10]
+# i =     0  1  2  3  4  5  6
+# k = 2
+
 def contains_nearby_duplicate_brute_force(nums: list[int], k: int) -> bool:
-    for i in range(len(nums) - 1): # i = 0
-        finial_index = min(k + 1, len(nums))
-        for j in range(i + 1, finial_index):
+    for i in range(len(nums) - 1): # i in range(6) -> 0, 1, 2, 3, 4, 5
+        finial_index = min(i + k + 1, len(nums))  # min(2 + 1, 7) = 3
+        for j in range(i + 1, finial_index): # range(1, 3)
             if nums[i] == nums[j]:
                 return True
     return False
@@ -135,13 +140,19 @@ def contain_nearby_duplicate_hashmap(nums: list[int], k: int)-> bool:
     return False
 
 def test(n: int) -> bool:
-    for i in range(100):
+    for i in range(n):
         l = randint(0, 10)
         nums = [randint(0, 10) for _ in range(l)]
         k = randint(0, len(nums))
         brute_force = contains_nearby_duplicate_brute_force(nums, k)
         hashmap_way = contain_nearby_duplicate_hashmap(nums, k)
+        errors = 0
+        corrects = 100
         if brute_force != hashmap_way:
+            errors += 1
+            corrects -= 1
             print(f'nums: {nums}, k: {k}, brute force: {brute_force} | hash map: {hashmap_way} | {brute_force == hashmap_way}')
+    print(f'corrects: {corrects}')
+    print(f'errors: {errors}')
 
 test(100)
