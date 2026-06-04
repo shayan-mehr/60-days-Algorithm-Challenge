@@ -103,7 +103,7 @@ Common variations:
 """
 
 def contains_nearby_duplicate_brute_force(nums: list[int], k: int) -> bool:
-    for i in range(len(nums)):
+    for i in range(len(nums) - 1): # i = 0
         finial_index = min(k + 1, len(nums))
         for j in range(i + 1, finial_index):
             if nums[i] == nums[j]:
@@ -112,6 +112,7 @@ def contains_nearby_duplicate_brute_force(nums: list[int], k: int) -> bool:
 
 # test
 from random import randint
+
 def log_brute_force(n: int) -> bool:
     for i in range(n):
         l = randint(0, 10)
@@ -119,4 +120,28 @@ def log_brute_force(n: int) -> bool:
         k = randint(0, len(nums))
         print(f"nums={nums}, k={k}  ->   {contains_nearby_duplicate_brute_force(nums, k)}")
 
-log_brute_force(10)
+# log_brute_force(10)
+
+
+def contain_nearby_duplicate_hashmap(nums: list[int], k: int)-> bool:
+    hashmap = {}
+    for i in range(len(nums)):
+
+        if nums[i] in hashmap:
+            j = hashmap[nums[i]]
+            if i - j <= k:
+                return True
+        hashmap[nums[i]] = i
+    return False
+
+def test(n: int) -> bool:
+    for i in range(100):
+        l = randint(0, 10)
+        nums = [randint(0, 10) for _ in range(l)]
+        k = randint(0, len(nums))
+        brute_force = contains_nearby_duplicate_brute_force(nums, k)
+        hashmap_way = contain_nearby_duplicate_hashmap(nums, k)
+        if brute_force != hashmap_way:
+            print(f'nums: {nums}, k: {k}, brute force: {brute_force} | hash map: {hashmap_way} | {brute_force == hashmap_way}')
+
+test(100)
