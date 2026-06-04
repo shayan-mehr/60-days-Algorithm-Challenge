@@ -102,6 +102,21 @@ Common variations:
     - Find all pairs within distance k
 """
 
-def containsNearbyDuplicate(nums: list[int], k: int) -> bool:
-    # your code here
-    pass
+def contains_nearby_duplicate_brute_force(nums: list[int], k: int) -> bool:
+    for i in range(len(nums)):
+        finial_index = min(k + 1, len(nums))
+        for j in range(i + 1, finial_index):
+            if nums[i] == nums[j]:
+                return True
+    return False
+
+# test
+from random import randint
+def log_brute_force(n: int) -> bool:
+    for i in range(n):
+        l = randint(0, 10)
+        nums = [randint(0, 10) for _ in range(l)]
+        k = randint(0, len(nums))
+        print(f"nums={nums}, k={k}  ->   {contains_nearby_duplicate_brute_force(nums, k)}")
+
+log_brute_force(10)
