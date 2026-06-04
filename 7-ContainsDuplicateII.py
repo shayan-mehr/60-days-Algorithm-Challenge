@@ -139,20 +139,45 @@ def contain_nearby_duplicate_hashmap(nums: list[int], k: int)-> bool:
         hashmap[nums[i]] = i
     return False
 
+
+def contain_nearby_duplicate_hashset(nums: list[int], k: int)-> bool:
+    hash_set = set()
+    for i in range(len(nums)):
+        if nums[i] in hash_set:
+            return True
+        hash_set.add(nums[i])
+        if len(hash_set) > k:
+            hash_set.remove(nums[i-k])
+    return False
+
+
+
 def test(n: int) -> bool:
     for i in range(n):
         l = randint(0, 10)
         nums = [randint(0, 10) for _ in range(l)]
         k = randint(0, len(nums))
         brute_force = contains_nearby_duplicate_brute_force(nums, k)
-        hashmap_way = contain_nearby_duplicate_hashmap(nums, k)
+        hash_map = contain_nearby_duplicate_hashmap(nums, k)
+        hash_set = contain_nearby_duplicate_hashset(nums, k)
         errors = 0
         corrects = 100
-        if brute_force != hashmap_way:
+        if brute_force != hash_set or hash_set != hash_map:
             errors += 1
             corrects -= 1
-            print(f'nums: {nums}, k: {k}, brute force: {brute_force} | hash map: {hashmap_way} | {brute_force == hashmap_way}')
+            print(f'nums: {nums}, k: {k}')
+            print(f'brute force: {brute_force}')
+            print(f'hash map: {hash_map}')
+            print(f'{brute_force == hash_map == hash_set}')
+            print('---------------------------------------')
     print(f'corrects: {corrects}')
     print(f'errors: {errors}')
 
-test(100)
+# test(100)
+
+print(contain_nearby_duplicate_hashset([1, 2, 3, 1], 3)) # True
+print(contain_nearby_duplicate_hashset([1, 2, 3, 1], 2)) # False
+
+
+
+
