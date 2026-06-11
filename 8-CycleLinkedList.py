@@ -156,6 +156,150 @@ Follow-up questions interviewers may ask:
 """
 
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
+# implement Cycle just with "Node"
+# a = Node(1)
+# b = Node(2)
+# c = Node(3)
+# d = Node(4)
+#
+# a.next = b
+# b.next = c
+# c.next = d
+# d.next = a
+# print(a.next.next.next.next.data) # output = a.data = 1
+
+# class CycleLinkedList:
+#     def __init__(self):
+#         self.head = None
+#
+#
+#     def append(self, data):
+#         if self.head is None:
+#             new_node = Node(data)
+#             self.head = new_node
+#             new_node.next = self.head
+#
+#         else:
+#             new_node = Node(data)
+#             new_node.next = self.head
+#
+#             current = self.head
+#             while current.next != self.head:
+#                 current = current.next
+#             current.next = new_node
+#             new_node.next = self.head
+#
+#
+# class LinkedList:
+#     def __init__(self):
+#         self.head = None
+#
+#
+#     def append(self, data):
+#         if self.head is None:
+#             new_node = Node(data)
+#             self.head = new_node
+#             new_node.next = None
+#
+#         else:
+#             new_node = Node(data)
+#             new_node.next = None
+#
+#             current = self.head
+#             while current.next is not None:
+#                 current = current.next
+#             current.next = new_node
+#             new_node.next = None
+#
+#
+#
+# # Test CycleLinkedList
+# # l = CycleLinkedList()
+# # l.append(1)
+# # l.append(2)
+# # l.append(3)
+# # l.append(4)
+# # for i in range(10):
+# #     print(i, ':', l.next())
+#
+#
+
+
+# cll = CycleLinkedList()
+# cll.append(1)
+# cll.append(2)
+# cll.append(3)
+# cll.append(4)
+#
+# ll = LinkedList()
+# ll.append(1)
+# ll.append(2)
+# ll.append(3)
+# ll.append(4)
+
+
+
+
+
+cll = []
+ll = []
+for i in range(4):
+    cll.append(Node(i))
+    ll.append(Node(i))
+
+# Cycle Linked List
+cll[0].next = cll[1]
+cll[1].next = cll[2]
+cll[2].next = cll[3]
+cll[3].next = cll[0]
+
+# test
+# h = cll[0]
+# for i in range(10):
+#     print(h.data)
+#     h = h.next
+
+# Linked List
+ll[0].next = ll[1]
+ll[1].next = ll[2]
+ll[2].next = ll[3]
+ll[3].next = None
+
+
+# Floyd's approch(fast and slow pointers)
 def hasCycle(head):
-    pass
+    fast = head
+    slow = head
+    while fast:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
+
+print(hasCycle(ll[0]))      # output: False
+print(hasCycle(cll[0]))     # output: True
+
+
+
+
+# linked list (within cycle)
+# slow : .  |  fast : -
+#   1   2   3   4   None
+#   .-
+#       .   -
+#           .       -        ====> return False, becaues Fast is None
+
+# cycle linked list
+# slow : .  |  fast : -
+#   1   2   3   4
+#   .-
+#       .   -
+#   _       .
+#           _   .
+#   ._               =====> return True, because slow == Fast
