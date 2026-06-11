@@ -18,15 +18,17 @@ Two main goals drive this journey:
 
 ## Progress
 
-| Day | Problem               | Topic                   | Status      |
-|-----|-----------------------|-------------------------|-------------|
-| 1   | Two Sum               | Hash Map                | done        |
-| 2   | Valid Parentheses     | Stack                   | done        |
-| 3   | Merge Sorted Array    | Two Pointers            | done        |
-| 4   | Maximum Subarray      | Kadane's Algorithm/DP   | done        |
-| 5   | Valid Parantheses     | Stack                   | done        |
-| 6   | Reverse Linked List   | Linked List             | done        |
-| 7   | Contains Duplicate II | HashMap, Sliding Window | in progress |
+| Day | Problem               | Topic                            | Status      |
+|-----|-----------------------|----------------------------------|-------------|
+| 1   | Two Sum               | Hash Map                         | done        |
+| 2   | Valid Parentheses     | Stack                            | done        |
+| 3   | Merge Sorted Array    | Two Pointers                     | done        |
+| 4   | Maximum Subarray      | Kadane's Algorithm/DP            | done        |
+| 5   | Valid Parantheses     | Stack                            | done        |
+| 6   | Reverse Linked List   | Linked List                      | done        |
+| 7   | Contains Duplicate II | HashMap, Sliding Window          | done        |
+| 8   | Cycle  Linked List    | Hashset, Floyd's Cycle Detection | in progress |
+
 
 
 ## How This Repository Is Organized
