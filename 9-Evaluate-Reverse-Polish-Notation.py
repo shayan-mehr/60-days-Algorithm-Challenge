@@ -162,6 +162,45 @@ Follow-up questions interviewers may ask:
 """
 
 
+class Stack:
+    def __init__(self):
+        self.items = []
+        self.top = -1
+
+    def is_empty(self):
+        return self.top == -1
+
+    def push(self, item):
+        self.top += 1
+        self.items.append(item)
+
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Stack is empty")
+        self.top -= 1
+        return self.items.pop()
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Stack is empty")
+        return self.items[self.top]
+
+
+# test Stack
+s = Stack()
+print(s.is_empty())
+s.push("1")
+print(s.peek())
+print(s.pop())
+nums = ["5", "3", "9", "5", "3", "9"]
+[s.push(num) for num in nums]
+print(s.push(15))
+print(s.is_empty())
+while not s.is_empty():
+    print(s.pop())
+print(s.is_empty())
+
+
 def evalRPN(tokens: list[str]) -> int:
     # your code here
     pass
