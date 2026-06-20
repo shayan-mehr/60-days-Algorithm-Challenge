@@ -233,10 +233,33 @@ def operation(x :int, y: int, op: str) -> int | float:
     #     raise ValueError("Invalid operation")
 
 # test
-print(operation(6, 5, "-"))
-print(operation(5, 5, "*"))
+# print(operation(6, 5, "-"))
+# print(operation(5, 5, "*"))
 
 
 def evalRPN(tokens: list[str]) -> int:
-    # your code here
-    pass
+    operators = ["+", "-", "*", "/"]
+    t = Stack()
+    for token in tokens:
+        if token in operators:
+            right = int(t.pop())
+            left = int(t.pop())
+            calc = operation(left, right, token)
+            t.push(calc)
+        else:
+            t.push(int(token))
+
+    s = 0
+    while not t.is_empty():
+        s += t.pop()
+    return s
+
+a = ["20", "1", "0", "-", "1", "5", "+", "2" , "/", "10", "*" ]
+print(evalRPN(a))
+
+# 1) [20, 1, 1, 0, -]
+# 2) [20, 1, 1, 5, +]
+# 3) [20, 1, 6, 2, /]
+# 4) [20, 1, 3, 10, *]
+# 5) [20, 1, 30] = 51
+
