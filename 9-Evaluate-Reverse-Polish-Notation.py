@@ -187,18 +187,54 @@ class Stack:
 
 
 # test Stack
-s = Stack()
-print(s.is_empty())
-s.push("1")
-print(s.peek())
-print(s.pop())
-nums = ["5", "3", "9", "5", "3", "9"]
-[s.push(num) for num in nums]
-print(s.push(15))
-print(s.is_empty())
-while not s.is_empty():
-    print(s.pop())
-print(s.is_empty())
+# s = Stack()
+# print(s.is_empty())
+# s.push("1")
+# print(s.peek())
+# print(s.pop())
+# nums = ["5", "3", "9", "5", "3", "9"]
+# [s.push(num) for num in nums]
+# print(s.push(15))
+# print(s.is_empty())
+# while not s.is_empty():
+#     print(s.pop())
+# print(s.is_empty())
+#
+
+
+def operation(x :int, y: int, op: str) -> int | float:
+    """
+    function caluclute op(x, y)
+    in other hand:
+    operation(x, y, op) = x [op] y
+
+
+    for example:
+    x = 5
+    y = 2
+    op = "+"
+    operation(5, 2, "+") = x + y
+    """
+    operators = {"+": int.__add__, "-": int.__sub__, "*": int.__mul__, "/": int.__truediv__}
+    if op in operators:
+        return operators[op](x, y)
+    else:
+        raise Exception(f"Operator {op} is not supported")
+
+    # if op == "+":
+    #     return x + y
+    # elif op == "-":
+    #     return x - y
+    # elif op == "*":
+    #     return x * y
+    # elif op == "/":
+    #     return x / y
+    # else:
+    #     raise ValueError("Invalid operation")
+
+# test
+print(operation(6, 5, "-"))
+print(operation(5, 5, "*"))
 
 
 def evalRPN(tokens: list[str]) -> int:
